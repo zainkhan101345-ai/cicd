@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Build Docker Image'){
             steps{
-                sh 'docker build -t $IMAGE_NAME'
+                sh 'docker build -t $IMAGE_NAME .'
             }
         }
         stage('Stop And Remove Previous Container'){
@@ -25,23 +25,24 @@ pipeline{
                     docker rm -t $CONTAINER_NAME || true
 
                 '''
+                
             }
         }
           stage('Docker Run Container'){
             steps{
                 sh '''
-                    docker run -d -p ${PORT}:${PORT} 
-                    --name $CONTAINER_NAME $IMAGE_NAME
-                    
-
+                 docker run -d \
+                -p ${PORT}:${PORT} \
+                --name $CONTAINER_NAME \
+                $IMAGE_NAME
                 '''
             }
         }
 
             stage('Send Email notifcation'){
             steps{
-                emaillext(
-                      subject:"Next Js App Deployed Successfully on EC2 using Jenkins757dddddd",
+                emailext(
+                      subject:"Next Js App Deployed Successfully on EC2 using Jenkins757dddddd1",
                     body:"Your NestJs App is deployed! http://http://13.48.56.138:${PORT}/",
                     to: "${EMAIL}"
                 )
