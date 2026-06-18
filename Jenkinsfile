@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage('Clone repo'){
             steps{
-                git branch:'main',url'https://github.com/zainkhan101345-ai/cicd.git'
+                git branch:'main',url: 'https://github.com/zainkhan101345-ai/cicd.git'
 
             }
         }
