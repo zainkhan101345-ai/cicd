@@ -42,7 +42,7 @@ pipeline{
             stage('Send Email notifcation'){
             steps{
                 emailext(
-                      subject:"Next Js App Deployed Successfully on EC2 using Jenkins757dddddd122",
+                      subject:"Next Js App Deployed Successfully on EC2 using Jenkins757dddddd122112",
                     body:"Your NestJs App is deployed! http://http://13.48.56.138:${PORT}/",
                     to: "${EMAIL}"
                 )
